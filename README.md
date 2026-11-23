@@ -71,7 +71,21 @@ current list names OpenAI and Google, not Anthropic.
 
 ## Sharing what works
 
-![How a workflow travels from draft to company-wide](docs/diagrams/workflow-lifecycle.png "Workflow lifecycle")
+How a workflow travels from draft to company-wide:
+
+```mermaid
+stateDiagram-v2
+  [*] --> Draft: posted in #35;light-hub, champion merges it, owner named
+  [*] --> Draft: converted from an old prompt page, owner confirming
+  Draft --> Team: two colleagues confirm it worked on a real case
+  Team --> Company: AI Academy review
+  Team --> Draft: flagged as wrong, owner fixing
+  Company --> Draft: flagged as wrong, owner fixing
+  Draft --> Retired: owner or champion retires it at Friday triage
+  Team --> Retired: unused or replaced, decided at Friday triage
+  Company --> Retired: replaced by a better workflow
+  Retired --> [*]
+```
 
 1. **Share it.** Tell Claude "share this with my team". `publish-workflow` turns your prompt or routine into a
    workflow file, with personal details removed, and drafts a post for **#light-hub**. You post it. You never need
@@ -140,7 +154,22 @@ The plan for taking the hub company-wide (team map, waves, governance, rhythm, m
 
 ## How the repo works
 
-![From a person's routine to every team's AI tool](docs/diagrams/hub-architecture.png "Hub architecture")
+From one person's routine to every team's AI tool:
+
+```mermaid
+flowchart TD
+  P["<b>Each person</b><br/>light-core + team plugin,<br/>installed by group"]
+  S["<b>#35;light-hub in Slack</b><br/>share · request · flag"]
+  A["<b>AI Academy + Chief of Staff</b><br/>Friday triage"]
+  C["<b>Team champion</b><br/>reviews the pull request;<br/>checks and evals run"]
+  R[("<b>light-hub repo</b><br/>synced to Claude, Codex<br/>and other agents")]
+  P -->|"share, request or flag"| S
+  S -->|"new workflow"| C
+  S -->|"requests and flags"| A
+  A -->|"build with the team"| C
+  C -->|"merge"| R
+  R -->|"next sync"| P
+```
 
 You edit two things: `hub.json` (plugins, audience, champions, connectors) and the `SKILL.md` files in
 `plugins/<plugin>/skills/`. `node scripts/hub.js build` generates the rest:
