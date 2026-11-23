@@ -129,3 +129,13 @@ test('"personal" is not a repo status, and a multi-line description gets a clear
   assert.ok(problems.includes('unknown status "personal"'));
   assert.ok(problems.some(p => p.startsWith('write the description on one line')));
 });
+
+test('evals run for exactly the bundles a change affects', () => {
+  const { affected } = require('../scripts/evals');
+  const plugins = [{ name: 'light-core', audience: 'everyone' }, { name: 'light-sales', audience: 'sales' }, { name: 'light-people', audience: 'people' }];
+  assert.deepStrictEqual(affected(['plugins/light-sales/skills/rfp-answers/SKILL.md'], plugins), ['as-sales']);
+  assert.deepStrictEqual(affected(['evals/as-people/x/prompt.md', 'README.md'], plugins), ['as-people']);
+  assert.deepStrictEqual(affected(['plugins/light-core/skills/light-context/SKILL.md'], plugins), ['as-everyone', 'as-sales', 'as-people']);
+  assert.deepStrictEqual(affected(['hub.json'], plugins).length, 3);
+  assert.deepStrictEqual(affected(['README.md', 'docs/company-rollout.md'], plugins), []);
+});

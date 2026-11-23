@@ -263,17 +263,29 @@ node scripts/hub.js find "the prospect wants a discount"
 ## Testing
 
 `npm test` checks the rules. Whether the right workflow fires for each team is checked with Claude Code's
-`claude plugin eval`, against a bundle that holds exactly what that kind of person has installed:
+`claude plugin eval`, against a bundle that holds exactly what that kind of person has installed.
 
-```bash
-node scripts/hub.js bundles /tmp/light-hub-evals
-cd /tmp/light-hub-evals/as-sales && claude plugin eval . --ablation none --runs 2 --max-cost-usd 5
-```
+**Once set up, nothing reaches `main` until its evals pass.**
 
-- **Cases:** `evals/<bundle>/` holds 12 per bundle (Sales, Partnerships, Finance, and a new joiner).
-- **Blind wording:** each bundle's requests were written in that role's own words before anyone read the skills.
-- **What each case checks:** which workflow fired, or that none did, and that the `## Never` rules held.
-- **Results:** the first run passed 41 of 48 cases. After the fixes, all eight changed or failing cases passed.
-  A full run costs about USD 9.
+| When | What runs | Set up |
+| --- | --- | --- |
+| Every `git push` | hub rules, `npm test`, then the evals for what changed | once per clone: `npm run hooks` |
+| Every pull request that touches `plugins/`, `evals/` or `hub.json` | the same evals in GitHub Actions | `ANTHROPIC_API_KEY` repository secret; make `evals` a required check on `main` |
+| Monthly | every bundle | `npm run evals:all` (about USD 9) |
+
+- **Only what changed runs.** A team plugin or its eval folder runs that team's bundle. light-core and
+  `hub.json` reach everyone, so they run every bundle. README and docs changes run nothing.
+- **Pass mark:** each case runs 3 times and must score at least 0.66, so roughly 2 of 3 runs hold up. One noisy
+  judge vote doesn't block a push; a workflow that is wrong most of the time does. Set `EVAL_THRESHOLD` to change it.
+- **Cost cap:** at most USD 5 per bundle per run (`EVAL_MAX_COST_USD`). A typical change to one team costs USD 1–3.
+- **Run it yourself first:** `npm run evals`. The HTML report for each bundle is printed at the end.
+- **Skip once:** `git push --no-verify`. The pull-request check still runs.
+- **When a case fails,** read the report. Fix the workflow, or fix the grader if the reply was right and the
+  grader too strict. Never lower the pass mark to get a push through.
+
+**Cases:** `evals/<bundle>/` holds one folder per case, for 7 bundles: a new joiner, Sales, Partnerships,
+Customer Success, Marketing, People and Finance. Each bundle's requests were written in that role's own words
+before anyone read the skills. Each case checks which workflow fired, or that none did, and that the
+`## Never` rules held.
 
 When a real request goes wrong, add it as a case, and add its words to the workflow's description.

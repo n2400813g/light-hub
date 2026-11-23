@@ -6,6 +6,9 @@
   "scripts": {
     "test": "node --test test/hub.test.js",
     "check": "node scripts/hub.js check",
-    "catalog": "node scripts/hub.js catalog"
+    "catalog": "node scripts/hub.js catalog",
+    "evals": "node scripts/evals.js",
+    "evals:all": "node scripts/evals.js --all",
+    "hooks": "git config core.hooksPath .githooks"
   }
 }

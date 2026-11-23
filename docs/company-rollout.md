@@ -110,7 +110,7 @@ Rules that apply everywhere:
 | When | What | Time |
 | --- | --- | --- |
 | Every Friday | AI Academy and Chief of Staff triage #light-hub requests and flags; retire what nobody uses | 20 minutes |
-| Before a merge into a team plugin | the champion runs that team's eval bundle (`node scripts/hub.js bundles`, then `claude plugin eval`) | about USD 2 |
+| Before a merge into a team plugin | the evals for that team run on push and on the pull request (`npm run evals`) | about USD 2 |
 | Monthly | champions meet for 30 minutes; full eval run across all bundles; words from every missed search go into descriptions | about USD 9 |
 | Each new wave | the AI Academy pairs with the new champion for the first three workflows | one week |
 
