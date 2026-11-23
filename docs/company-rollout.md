@@ -35,8 +35,8 @@ come from public sources (job board, trust centre, DPA, press) as of November 20
 | light-legal | legal and compliance | Legal & Compliance | 3 |
 
 - **A plugin is created when its first workflow reaches `draft`, never before.** Empty plugins are noise.
-- **Engineering and Product get light-core only.** They already work in Claude Code and Codex, with skills in
-  their own repositories.
+- **Engineering and Product get light-core only.** Engineering works in GitHub and has its own coding agent
+  (Sirius, from Light's engineering blog), so code skills belong in its own repositories.
 - **Regions are not plugins.** A DACH or Nordics difference, such as language, entity or currency, is a step
   inside the workflow ("if the contact is in DACH, write in German"). That keeps it at 8 plugins rather than 30.
 
@@ -86,7 +86,8 @@ Rules that apply everywhere:
 ### 5. Measures
 
 Each measure checks whether knowledge moved, not just whether the AI tools were used.
-- **New-joiner time to first hub workflow.** GTM hires about 20 people per quarter, so this moves quickly.
+- **New-joiner time to first hub workflow.** 22 of the 28 open roles are in GTM, so this has a steady supply of
+  new joiners.
 - **Share of each team that ran a team workflow this week.** Claude Enterprise analytics count use per plugin and
   per group; Codex use is reported by people.
 - **Requests and flags closed within two weeks.**

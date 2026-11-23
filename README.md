@@ -1,117 +1,184 @@
-# light-hub
+![Light: agentic accounting for modern finance teams](docs/images/light-banner.jpg "Light")
 
-Every working workflow at Light, in one place: one plugin per team plus a shared core. Written once in
-open formats and packaged for each AI platform Light uses, so the hub is not tied to any one vendor. Prototype for the Light AI Academy case, Part 2. Owners, the GitHub
-teams in `hub.json`, and outside-Claude entries marked EXAMPLE or "named in week one" are placeholders.
+# Light Hub
 
-## What is in it
+Every working AI workflow at Light, in one place. It is internal, and it lives inside the AI tools people already
+use: there is no new app to open. Each team gets a plugin of workflows (written instructions that Claude or Codex
+follow), plus a shared core for everyone.
+
+> **Status:** prototype for the AI Academy case, Part 2. Owners, the `light-inc/*` GitHub teams and catalog
+> entries marked EXAMPLE are placeholders until week one.
+
+## Contents
+
+- [Start here](#start-here)
+- [Your first day](#your-first-day)
+- [Good practice by type of team](#good-practice-by-type-of-team)
+- [Sharing what works](#sharing-what-works)
+- [For champions](#for-champions)
+- [For the hub admins](#for-the-hub-admins)
+- [The rules](#the-rules)
+- [How the repo works](#how-the-repo-works)
+- [Testing](#testing)
+
+## Start here
+
+| You are… | Do this | Time |
+| --- | --- | --- |
+| New at Light, or new to the hub | Open Claude and ask **"I'm new, what workflows do I have?"** | 2 minutes |
+| Repeating a task by hand | Ask **"is there a workflow for …?"** If there isn't one, Claude drafts the request with you | 5 minutes |
+| Happy with a prompt or routine you built | Say **"share this with my team"** | 10 minutes |
+| Seeing a workflow get something wrong | Say **"this workflow got it wrong"** | 5 minutes |
+| Your team's champion | Read [For champions](#for-champions) | 15 minutes |
+| AI Academy or IT, setting it up | Read [For the hub admins](#for-the-hub-admins) | 1 hour |
+
+## Your first day
+
+Nothing to install. Your Claude account is in your team's group, so the workflows are already there.
+
+1. **Ask what you have.** "I'm new, what workflows do I have?" lists your team's workflows and the shared ones,
+   each with an example of what to say to start it.
+2. **Just ask for the work.** You don't need workflow names. "Write the follow-up for the call I just had" starts
+   `call-follow-up`. "Prep me for my meeting with …" starts `account-research`.
+3. **Check every draft before it goes anywhere.** Workflows draft; you send. None of them sends an email, posts in
+   Slack or changes HubSpot on its own.
+4. **If HubSpot isn't connected for you,** the workflow asks you to paste the notes in. It never fills the gaps
+   from memory.
+
+What everyone has:
 
 | Plugin | For | Workflows |
 | --- | --- | --- |
-| light-core | Everyone | find-workflow, request-workflow, publish-workflow, light-context |
-| light-sales | AEs, BDRs, Country Executives | call-follow-up (v8 from the correction loop), account-research, deal-review (draft) |
-| light-partners | Partnerships | partner-referral-intake (Part 1) |
-| light-finance | Finance; draft, not distributed yet | pricing-approval-memo, plus the Light connector |
+| light-core | Everyone | `find-workflow`, `request-workflow`, `publish-workflow`, `light-context` |
+| light-sales | AEs, BDRs, account managers, solutions engineers, Country Executives | `call-follow-up`, `account-research`, `deal-review` (draft) |
+| light-partners | Partnerships | `partner-referral-intake` |
+| light-finance | Finance; not released yet | `pricing-approval-memo`, and the Light connector |
 
-How this goes from one Sales pod to all of Light (team map, governance, rhythm, measures):
+## Good practice by type of team
+
+These follow what the four simulated teams ran into (see [Testing](#testing)).
+
+| Type of team | Teams at Light | What works | What to avoid |
+| --- | --- | --- | --- |
+| **Customer-facing** | Sales, Partnerships, Customer Success, Marketing | Start from HubSpot, the CRM. Use `light-context` for anything that describes Light. Handle a regional difference (language, entity) as one step inside the workflow. | Sending what the AI drafted unread. Naming a customer who is not on the public list. Quoting a price: pricing goes to Finance. |
+| **Operations** | Finance, People, Legal & Compliance | Keep data in its own system; the workflow says where to find it. Paste in only what the task needs. | Pasting bank details, salaries or contracts into a request or a shared workflow. The checks reject email addresses, amounts and account numbers. |
+| **Builders** | Engineering, Product | Keep code skills in your own repositories. Use light-core to find what other teams already built. | Copying a team workflow into a code repo; link to it instead. |
+| **AI Academy** | Academy cohort | Rebuild a process with its team, then hand the workflow to a named owner in that team before you rotate. | Keeping yourself as owner after you move on. |
+
+**Customer data goes through Legal first.** Before a workflow sends *customers'* data (support tickets, a
+customer's ledger) to an AI provider, Legal & Compliance must confirm that provider is covered by Light's DPA. Its
+current list names OpenAI and Google, not Anthropic.
+
+## Sharing what works
+
+![How a workflow travels from draft to company-wide](docs/diagrams/workflow-lifecycle.png "Workflow lifecycle")
+
+1. **Share it.** Tell Claude "share this with my team". `publish-workflow` turns your prompt or routine into a
+   workflow file, with personal details removed, and drafts a post for **#light-hub**. You post it. You never need
+   GitHub.
+2. **Champion review.** Your team's champion adds it to the team plugin as `draft`, with you as owner. Everyone in
+   the team gets it on the next sync.
+3. **Team status.** It becomes `team` when two colleagues reply in the thread that it worked on a real case of
+   theirs. Explicit replies only: silence never counts.
+4. **Company status.** Company-wide status needs the AI Academy's review.
+
+**When something is wrong:** say "this workflow got it wrong". Claude drafts a flag post that tags the owner. The
+owner fixes it, and everyone has the fix on the next sync.
+
+## For champions
+
+One champion per team plugin, chosen by the team lead. About 15 minutes a week.
+
+- [ ] Join your team's GitHub team (listed in `hub.json`). GitHub then asks you to review every change to your
+      plugin.
+- [ ] Watch **#light-hub** for posts from your team. Add new workflows as `draft` within a week.
+- [ ] Before merging, run your team's tests: [Testing](#testing). About USD 2.
+- [ ] Promote a workflow to `team` after two explicit confirmations.
+- [ ] Bring retirements and anything stuck to the Friday triage.
+- [ ] For your first three workflows, pair with the AI Academy.
+
+## For the hub admins
+
+The AI Academy owns the repository. Legal & Compliance co-review every change to `hub.json`, which sets the
+connectors and who gets what.
+
+### Claude (Team or Enterprise)
+
+1. Organization settings > **Plugins & skills**: add this private GitHub repository as the organisation
+   marketplace.
+2. Give light-core to everyone, and each team plugin to its team's group. Members get them installed.
+3. Connect HubSpot and Slack once, at organisation level. Each person uses their own access.
+4. Add a new joiner to their team's group when their account is created. That is the only onboarding step.
+
+### Codex and other agents
+
+- **Codex** reads `.agents/plugins/marketplace.json` from this repository, with each plugin's install setting.
+  Exact setup steps are still to be checked in week one.
+- **Any other agent**, through the open `skills` CLI. It uses your existing GitHub login:
+
+  ```bash
+  npx skills add https://github.com/<light-org>/light-hub --list
+  npx skills add https://github.com/<light-org>/light-hub --skill find-workflow
+  ```
+
+> **Hidden is not secret.** A `hidden` plugin is left out of every marketplace, but anyone who can read the
+> repository can install any skill. That is safe only because workflows hold procedure, never data.
+
+The plan for taking the hub company-wide (team map, waves, governance, rhythm, measures) is in
 [docs/company-rollout.md](docs/company-rollout.md).
 
-`catalog/outside-claude.json` lists workflows that run elsewhere (HubSpot workflows, n8n, Light's own agents),
-so `find-workflow` can point to them too.
+## The rules
 
-## One source, several platforms
+`node scripts/hub.js check` runs on every pull request.
 
-You edit two things: `hub.json` (the plugins, who they are for, each plugin's champion, connectors) and the `SKILL.md` files in
-`plugins/<plugin>/skills/`. Skills use the open Agent Skills format. `node scripts/hub.js build` generates
-everything else:
+1. Every workflow has a named owner, a team, a status and a version.
+2. The description says "Use when …" in the words people actually use.
+3. Every workflow has a `## Never` section.
+4. Workflows hold procedure, never data: no email addresses, amounts or account numbers.
+5. A workflow points only to workflows people can run, never to one in a hidden plugin.
+6. Every plugin has a champion. An outside workflow needs a real link unless it is a draft.
+
+## How the repo works
+
+![From a person's routine to every team's AI tool](docs/diagrams/hub-architecture.png "Hub architecture")
+
+You edit two things: `hub.json` (plugins, audience, champions, connectors) and the `SKILL.md` files in
+`plugins/<plugin>/skills/`. `node scripts/hub.js build` generates the rest:
 
 | Generated file | Read by |
 | --- | --- |
-| `plugins/<plugin>/plugin.json`, `mcp.json` | Clients of the open Agent Plugins standard (agent-plugins.org), including ChatGPT and Codex |
 | `plugins/<plugin>/.claude-plugin/plugin.json`, `.mcp.json` | Claude |
-| `.claude-plugin/marketplace.json` | Claude private organisation marketplaces |
-| `.agents/plugins/marketplace.json` | ChatGPT and Codex repository marketplaces, with install policy from `hub.json` |
-| `.github/CODEOWNERS` | GitHub: each team's champion must approve changes to their plugin |
+| `.claude-plugin/marketplace.json` | Claude organisation marketplace |
+| `plugins/<plugin>/plugin.json`, `mcp.json` | Agent Plugins 1.0.0 clients (passes the official schemas) |
+| `.agents/plugins/marketplace.json` | Codex, with install policy from `hub.json` |
+| `.github/CODEOWNERS` | GitHub: champions review their plugin; Legal & Compliance review `hub.json` |
+| `plugins/light-core/skills/find-workflow/references/catalog.md` | `find-workflow` |
 
-A `hidden` plugin is left out of every marketplace, so no platform delivers it. Hidden is not secret: anyone who
-can read the repository can install any skill (for example with `npx skills add`), which is why workflows hold
-procedure, never data.
+The manifests carry no `version` on purpose. Claude then tracks the git commit, so every merged change reaches
+people on the next sync. This was tested: an install from GitHub updated to the new commit.
 
-Adding a platform means adding one writer to `scripts/hub.js`. The skills, owners and rules do not change.
-The Claude packaging passes Claude Code's validator. The manifests deliberately carry no `version`: a set version
-keeps everyone on it until someone bumps it, so fixes would never arrive. Without one, Claude tracks the git commit,
-as its docs recommend, and `--strict` reports only that missing version. The OpenAI packaging follows OpenAI's documented format
-and has not yet been loaded in ChatGPT or Codex.
+```bash
+node scripts/hub.js build     # regenerate packaging from hub.json
+node scripts/hub.js catalog   # regenerate the catalog
+node scripts/hub.js check     # the rules
+npm test                      # rules, catalog, packaging and findability tests
+node scripts/hub.js find "the prospect wants a discount"
+```
 
-## Set it up in Claude (Team or Enterprise)
+## Testing
 
-1. Push this repository to a private GitHub repository owned by Light's organisation.
-2. Organization settings > Plugins > Marketplaces: add the repository and turn on automatic sync.
-3. Set access by group: light-core for everyone, each team plugin for its team's group. Members get them
-   installed, so nobody has to search for the basics.
-4. Connect HubSpot, Slack and Google Drive once, at organisation level. Workflows use each person's own access.
+`npm test` checks the rules. Whether the right workflow fires for each team is checked with Claude Code's
+`claude plugin eval`, against a bundle that holds exactly what that kind of person has installed:
 
-To try it locally with Claude Code:
+```bash
+node scripts/hub.js bundles /tmp/light-hub-evals
+cd /tmp/light-hub-evals/as-sales && claude plugin eval . --ablation none --runs 2 --max-cost-usd 5
+```
 
-    claude plugin marketplace add ./light-hub
-    claude plugin install light-core@light-hub
-    claude plugin install light-sales@light-hub
+- **Cases:** `evals/<bundle>/` holds 12 per bundle (Sales, Partnerships, Finance, and a new joiner).
+- **Blind wording:** each bundle's requests were written in that role's own words before anyone read the skills.
+- **What each case checks:** which workflow fired, or that none did, and that the `## Never` rules held.
+- **Results:** the first run passed 41 of 48 cases. After the fixes, all eight changed or failing cases passed.
+  A full run costs about USD 9.
 
-## The rules (enforced by `node scripts/hub.js check` on every pull request)
-
-1. Every workflow has a named owner, a team, a status and a version.
-2. The description says "Use when ..." in the words people actually use.
-3. Every workflow has a "Never" section.
-4. Workflows hold procedure, never data: no email addresses, amounts or account numbers.
-5. A workflow only points people to workflows they can run: not to one in a hidden plugin.
-6. Every plugin has a champion; an outside workflow needs a real link unless it is a draft.
-
-Status: `draft` (in the team plugin, reviewed by the champion), then `team` (two colleagues confirmed it worked on a
-real case), then `company` (AI Academy review). `retired` hides it from the catalog. There is no `personal` status in
-the repo: a personal skill lives in that person's own Claude.
-
-## How a workflow gets here
-
-1. Someone builds something that works for them in Claude.
-2. `publish-workflow` turns it into a SKILL.md with an owner and examples, and drafts a #light-hub post. The author
-   posts it; they never touch GitHub.
-3. The team champion reviews it and opens a pull request that adds it to the team plugin as `draft`.
-4. CI runs the rules and regenerates the catalog. On merge, Claude syncs it to everyone in that team.
-5. When two colleagues reply in the thread that it worked on a real case, the champion changes it to `team`.
-
-When a workflow gets something wrong, `request-workflow` drafts a flag post for #light-hub that tags the owner. The
-owner fixes it, bumps `metadata.version`, and the fix reaches everyone on the next sync.
-
-Retirement is a decision at the Friday triage, not a timer: Claude does not report use per skill. On Enterprise,
-the analytics API's per-plugin counts are one input.
-
-## Commands
-
-    node scripts/hub.js build   # regenerate every platform's packaging from hub.json
-    npm test                    # rules, catalog and findability tests
-    node scripts/hub.js check   # rules only
-    node scripts/hub.js catalog # regenerate the catalog find-workflow reads
-    node scripts/hub.js find "the prospect wants a discount"
-
-## Testing it the way people use it
-
-`npm test` checks the rules. Whether the right workflow fires for each team is checked with Claude Code's own
-`claude plugin eval`, using one test bundle per kind of person that holds exactly what they have installed:
-
-    node scripts/hub.js bundles /tmp/light-hub-evals
-    cd /tmp/light-hub-evals/as-sales && claude plugin eval . --ablation none --runs 2 --max-cost-usd 5
-
-`evals/<bundle>/` holds 12 cases per bundle (Sales, Partnerships, Finance with its plugin still hidden, and a new
-joiner with light-core only). Each bundle's requests were written in that role's own words before reading any
-skill (`requests-blind.md`), then labelled. Each case checks which skill fired, or that none did, and, where a
-"Never" rule applies, that it held. A full run of all four bundles costs about USD 9. Add the words from every
-miss to the description, and every real request that went wrong as a new case.
-
-## What the findability test showed
-
-Keyword search found the right workflow in the top three for 15 of 15 requests written with the
-descriptions, but only 6 of 11 written in other words. After adding the words from those misses to the
-descriptions, a fresh set of 11 got 9 in the top three and 4 first. Search should be the backup, not the
-front door: install each team's plugin by group, and add the words from every missed search to the
-description. Claude's own matching reads meaning rather than keywords and should do better; it was not
-tested here.
+When a real request goes wrong, add it as a case, and add its words to the workflow's description.
