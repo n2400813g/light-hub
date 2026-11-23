@@ -10,7 +10,7 @@ metadata:
 
 # Hiring scorecard
 
-Light's Talent Partners "build the scorecards and calibration that keep the bar high". Ashby holds the scorecards; this workflow drafts one for the Talent Partner to enter.
+Talent Partners own the scorecards and calibration that keep the hiring bar high. Ashby holds the scorecards; this workflow drafts one for the Talent Partner to enter.
 
 1. Ask for the job description and anything the hiring manager said the role must achieve in its first six months.
 2. Pick four to six attributes from what the job description asks for. Quote the line each one comes from.

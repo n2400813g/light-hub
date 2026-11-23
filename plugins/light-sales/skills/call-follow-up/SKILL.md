@@ -10,8 +10,6 @@ metadata:
 
 # Call follow-up
 
-v8 applies three changes found by the correction loop in v7 runs: no pleasantry, no free-trial line, and the security pack added.
-
 1. Greet the contact by first name, and nothing more: "Hi {first},"
 2. Thank them for their time and recap the pains they named on the call, in their words.
 3. Map each pain to the Light capability that addresses it.

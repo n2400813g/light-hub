@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-people",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "For Talent Partners and hiring managers: interview scorecards for Ashby.",
   "author": {
     "name": "Light AI Academy"

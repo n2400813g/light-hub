@@ -10,7 +10,7 @@ metadata:
 
 # Localise content
 
-Light's regional marketing roles own "localising our story, content and campaigns". The facts come from `light-context`; this workflow changes how they are said, never what is claimed.
+Regional marketing localises our story, content and campaigns for each market. The facts come from `light-context`; this workflow changes how they are said, never what is claimed.
 
 1. Ask for the source text, the market, the audience (CFO, controller, partner, press) and the channel.
 2. Keep every claim from the source and from `light-context`. Add none.

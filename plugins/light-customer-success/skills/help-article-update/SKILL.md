@@ -10,7 +10,7 @@ metadata:
 
 # Help article update
 
-Support keeps the [Light Help Center](https://light.inc/help) "accurate and current" and shares "feature requests and effective workarounds" (Light's Support Specialist role). This workflow drafts that, once a case is solved.
+Support keeps the [Light Help Center](https://light.inc/help) accurate and current, and passes feature requests and workarounds to Product. This workflow drafts both once a case is solved.
 
 1. Ask for three things in the person's own words: what the customer was trying to do, what went wrong, and what fixed it. Not the ticket itself.
 2. Ask for the link of the article to change. If there is none, say which Help Center section it belongs in and draft a new article.

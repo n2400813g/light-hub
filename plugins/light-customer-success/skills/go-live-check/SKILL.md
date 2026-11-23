@@ -10,7 +10,7 @@ metadata:
 
 # Go-live check
 
-The steps come from Light's own help article, [Go-live readiness](https://light.inc/help/getting-started/go-live-readiness). If the article and this workflow disagree, the article wins: flag it with `request-workflow`.
+The steps come from our help article [Go-live readiness](https://light.inc/help/getting-started/go-live-readiness). If the article and this workflow disagree, the article wins: flag it with `request-workflow`.
 
 Work from the project's status notes or tracker, pasted in or shared. Ask for what is missing; never assume a step is done.
 

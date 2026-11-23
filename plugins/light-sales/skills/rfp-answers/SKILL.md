@@ -10,7 +10,7 @@ metadata:
 
 # RFP answers
 
-Light's Solutions Engineers write "RFP answers" and handle "objections on integrations, data migration, security, controls and audit trail". Every answer here comes from a public source and links to it.
+Solutions Engineers answer RFPs and buyers' questions on integrations, data migration, security, controls and audit trail. Every answer here comes from a public source and links to it.
 
 1. Read every question. Sort them into: security and compliance, integrations, migration and implementation, product, commercial, and other.
 2. Answer from these sources only, linking the page for each answer:

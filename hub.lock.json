@@ -4,24 +4,24 @@
     "version": "0.1.6"
   },
   "light-sales": {
-    "hash": "c31e85c97dab",
-    "version": "0.1.2"
+    "hash": "105569642fb7",
+    "version": "0.1.3"
   },
   "light-partners": {
     "hash": "47e5b28abae4",
     "version": "0.1.1"
   },
   "light-customer-success": {
-    "hash": "2c05656a6184",
-    "version": "0.1.1"
-  },
-  "light-marketing": {
-    "hash": "965d858af634",
+    "hash": "df33472a9fe9",
     "version": "0.1.2"
   },
+  "light-marketing": {
+    "hash": "ccb732c85948",
+    "version": "0.1.3"
+  },
   "light-people": {
-    "hash": "0783e5190de7",
-    "version": "0.1.1"
+    "hash": "4b2a9984157f",
+    "version": "0.1.2"
   },
   "light-finance": {
     "hash": "ed020a3d5708",

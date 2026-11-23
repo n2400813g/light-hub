@@ -116,15 +116,14 @@ One champion per team plugin, chosen by the team lead. About 15 minutes a week.
 The AI Academy owns the repository. Legal & Compliance co-review every change to `hub.json`, which sets the
 connectors and who gets what.
 
-Light's confirmed AI tools are Claude, Codex, Lovable and Noon (job posts). Each was checked against its own
-documentation, and tested where a command-line tool exists:
+Everyone at Light has Claude, Codex, Lovable and Noon. How each one gets the hub:
 
-| Tool | What people get | Tested |
+| Tool | What people get | Where it's set up |
 | --- | --- | --- |
-| **Claude**: web, desktop, mobile, Cowork, Claude Code | every workflow and connector | validator (`--strict`) passes; install and update from GitHub |
-| **Codex** (and ChatGPT, through the same workspace plugins) | every workflow, Finance's connector | Codex CLI 0.171.0: marketplace added, plugins installed, Finance refused, skills in the prompt |
-| **Lovable** | the workflows while building apps; `light-context` as workspace instructions | from its docs |
-| **Noon** (recruiting agent, synced with Ashby) | nothing to install: Claude reaches it as a connector | from its docs |
+| **Claude**: web, desktop, mobile, Cowork, Claude Code | every workflow and connector | [Claude](#claude) |
+| **Codex** (and ChatGPT, through the same workspace plugins) | every workflow, Finance's connector | [Codex and ChatGPT](#codex-and-chatgpt) |
+| **Lovable** | the workflows while building apps; `light-context` as workspace instructions | [Lovable](#lovable) |
+| **Noon** (recruiting agent, synced with Ashby) | nothing to install: Claude reaches it as a connector | [Noon](#noon) |
 
 ### Claude
 
@@ -154,7 +153,7 @@ Organisation sync and Codex both look for a version change. If a sync ever looks
 2. Set light-core and the team plugins to **Installed**. Enterprise can do this per role.
 3. **Switch off light-finance by hand.** The import does not apply the repository's install settings.
 
-**One person, from the Codex CLI** (verified; it uses their GitHub login):
+**One person, from the Codex CLI** (it uses their GitHub login):
 
 ```bash
 codex plugin marketplace add <light-org>/light-hub
