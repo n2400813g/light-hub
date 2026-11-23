@@ -2,7 +2,7 @@
 name: help-article-update
 description: Draft an update to a Light Help Center article from a support case that is solved, so the next customer finds the answer or workaround on their own. Use when a Support Specialist says "this should be in the help center", "the article is out of date", "update the help article", "we keep getting this question", or has found a workaround worth sharing; also drafts the feature request for Product when the fix is not in the product yet.
 metadata:
-  owner: Customer Success champion (named in week one)
+  owner: Customer Success champion
   team: customer-success
   status: draft
   version: "1"

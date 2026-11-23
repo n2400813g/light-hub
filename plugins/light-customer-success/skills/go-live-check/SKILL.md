@@ -2,7 +2,7 @@
 name: go-live-check
 description: Check a customer's implementation against Light's published go-live readiness steps and list what is missing, out of order or at risk, before the customer notices. Use when an Implementation Manager, Data Migration Lead or Agentic Customer Engineer asks "are we ready to go live", "what's left before cutover", "is this project on track", "prep the go-live call", or wants a status check on a migration, cutover or parallel run, including a partner-led implementation.
 metadata:
-  owner: Customer Success champion (named in week one)
+  owner: Customer Success champion
   team: customer-success
   status: draft
   version: "1"

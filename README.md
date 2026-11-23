@@ -6,9 +6,6 @@ Every working AI workflow at Light, in one place. It is internal, and it lives i
 use: there is no new app to open. Each team gets a plugin of workflows (written instructions that Claude or Codex
 follow), plus a shared core for everyone.
 
-> **Status:** prototype for the AI Academy case, Part 2. Owners, the `light-inc/*` GitHub teams and catalog
-> entries marked EXAMPLE are placeholders until week one.
-
 ## Contents
 
 - [Start here](#start-here)
@@ -59,7 +56,7 @@ What everyone has:
 
 ## Good practice by type of team
 
-These follow what the four simulated teams ran into (see [Testing](#testing)).
+These come from what each team's eval cases test (see [Testing](#testing)).
 
 | Type of team | Teams at Light | What works | What to avoid |
 | --- | --- | --- | --- |

@@ -2,7 +2,7 @@
 name: rfp-answers
 description: Draft answers to an RFP, a security questionnaire or a due-diligence list from Light's public sources only, and mark every question that needs a person. Use when a Solutions Engineer or AE gets an RFP, RFI, vendor questionnaire, security or IT questionnaire, or questions on integrations, data migration, security, controls or audit trail, or asks "fill in this questionnaire" or "answer these security questions".
 metadata:
-  owner: Sales champion (named in week one)
+  owner: Sales champion
   team: sales
   status: draft
   version: "1"

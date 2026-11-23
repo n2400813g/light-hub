@@ -1,7 +1,7 @@
 # Taking light-hub company-wide
 
 What it takes to go from one Sales pod to all of Light, and what it deliberately does not take. Facts about Light
-come from public sources (job board, trust centre, DPA, press) as of November 2026. Anything inferred is marked.
+come from public sources (job board, trust centre, DPA, press) as of November 2026.
 
 ## What Light looks like
 
@@ -146,13 +146,12 @@ Each measure checks whether knowledge moved, not just whether the AI tools were 
 - [Backstage software catalog](https://backstage.io/docs/features/software-catalog/descriptor-format/): owner and
   lifecycle.
 
-## To confirm in week one
+## Open decisions
 
 1. **Who owns the hub.** The Chief of Staff to the CEO and the Head of Finance & Operations: who owns the
    roadmap, and who is the AI Academy lead.
 2. **Which plans Light has.** Claude Team or Enterprise, and Codex/ChatGPT Business or Enterprise. Analytics per
    plugin need Claude Enterprise.
 3. **Whether Anthropic should be added to the DPA,** or whether customer-data workflows stay on OpenAI or Google.
-4. **The real champion for each wave-1 and wave-2 team,** replacing the `light-inc/*` placeholders in `hub.json`.
-5. **Whether Light runs on Google Workspace or Microsoft 365.** This is inferred to be Google Workspace and not
-   confirmed. It decides the Drive connector.
+4. **The champion for each wave-1 and wave-2 team,** set as their GitHub team in `hub.json`.
+5. **Google Workspace or Microsoft 365.** This decides which document connector the hub adds.

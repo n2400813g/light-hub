@@ -2,7 +2,7 @@
 name: pricing-approval-memo
 description: Draft the memo that asks Finance to approve a discount or non-standard price on a deal. Use when a prospect asks for a discount, an AE asks "how do I get a discount approved", a deal needs pricing outside the standard terms, or a customer pushes back on cost or price and the AE wants to go lower.
 metadata:
-  owner: Finance champion (named in week two)
+  owner: Finance champion
   team: finance
   status: draft
   version: "1"
@@ -10,7 +10,7 @@ metadata:
 
 # Pricing approval memo
 
-Draft. Converted from Finance's prompt page in week two; Finance must confirm the approval rules before it is distributed.
+Draft. Finance confirms the approval rules before it is distributed.
 
 1. Read the deal in HubSpot: the requested price, term, entities and the competitive situation the AE logged.
 2. Write the memo: what is asked, why, what Light gets in return (term, case study, reference), and the margin effect if Finance has provided the formula.

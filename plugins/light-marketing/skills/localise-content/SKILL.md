@@ -2,7 +2,7 @@
 name: localise-content
 description: Adapt Light's English story, a campaign, an event invite or a sales one-pager for a regional market (Nordics, DACH, Benelux, France, US) so it reads as written there, not translated. Use when a regional marketer or Country Executive asks to "localise", "translate", "adapt for Germany" or "make this work for the Dutch market", or needs a CFO dinner invite, event follow-up, landing page or collateral in Danish, Swedish, Norwegian, German, Dutch or French. Not for personal messages.
 metadata:
-  owner: Marketing champion (named in week one)
+  owner: Marketing champion
   team: marketing
   status: draft
   version: "1"

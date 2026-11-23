@@ -17,7 +17,7 @@ test('the rules catch a workflow with no owner, no "Use when" and customer data 
 test('the catalog lists every workflow people can run: not retired, and outside ones only with a real link', () => {
   const n = H.catalog();
   assert.strictEqual(n, H.entries().filter(e => e.status !== 'retired' && e.runnable).length);
-  assert.ok(H.entries().some(e => !e.runnable), 'the EXAMPLE placeholders should be left out');
+  assert.ok(H.entries().some(e => !e.runnable), 'outside workflows without a link yet should be left out');
 });
 
 // Requests in the words people at Light would use, not the words in the skill names.
@@ -41,8 +41,8 @@ const REQUESTS = [
   ['fill in this security questionnaire from the buyer', 'rfp-answers'],
   ['adapt this CFO dinner invite for Germany', 'localise-content'],
   ['build the interview scorecard for the new role', 'hiring-scorecard'],
-  ['how are inbound leads routed', 'EXAMPLE inbound-lead-routing'],
-  ['how do supplier invoices get into Light', 'EXAMPLE vendor-invoice-intake'],
+  ['how are inbound leads routed', 'inbound-lead-routing'],
+  ['how do supplier invoices get into Light', 'vendor-invoice-intake'],
   ['book a meeting room in Copenhagen', null],
   ['translate my holiday request into Danish', null],
 ];

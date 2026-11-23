@@ -2,7 +2,7 @@
 name: hiring-scorecard
 description: Turn a role brief or job description into an interview scorecard for Ashby, with the attributes to assess, who assesses each, the questions to ask and what a strong and a weak answer look like, so interviewers calibrate on the same bar. Use when a Talent Partner or hiring manager asks to "build the scorecard", "set up the interview plan", "what should each interviewer assess", "calibrate the panel", or opens a new role.
 metadata:
-  owner: People champion (named in week one)
+  owner: People champion
   team: people
   status: draft
   version: "1"

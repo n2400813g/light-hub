@@ -2,7 +2,7 @@
 name: call-follow-up
 description: Draft the follow-up email after a discovery or demo call, from the HubSpot meeting notes and deal. Use when a call has just ended, when an AE asks to "write the follow-up", "send a recap" or "email them after the call", or "thank them and suggest next steps", or when a meeting with a prospect, CFO or controller is logged on an open deal.
 metadata:
-  owner: Sales champion (named in week one)
+  owner: Sales champion
   team: sales
   status: team
   version: "9"

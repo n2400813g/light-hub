@@ -2,7 +2,7 @@
 name: account-research
 description: Build a one-page brief on a prospect company before a call, or check a list of target companies against Light's ideal customer. Use when an AE or BDR has a meeting booked, asks to "research" or "prep for" a company, wants to know if a company fits Light's ideal customer (multi-entity, multi-currency, fast growth), or asks to "build a target list", "find companies like X", or make a prospecting or ICP list.
 metadata:
-  owner: Sales champion (named in week one)
+  owner: Sales champion
   team: sales
   status: team
   version: "2"

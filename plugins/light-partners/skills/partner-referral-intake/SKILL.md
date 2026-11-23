@@ -2,15 +2,13 @@
 name: partner-referral-intake
 description: Read a partner's referral or intro email, check it against HubSpot, apply the rules of engagement and route it to the right AE. Use when an accounting firm, implementation partner or fractional CFO introduces a prospect, registers a referral, or someone asks "who should take this referral", or a partner asks about their commission, payout or referral fee.
 metadata:
-  owner: Partnerships champion (named in week one)
+  owner: Partnerships champion
   team: partners
   status: team
   version: "2"
 ---
 
 # Partner referral intake
-
-From Part 1 of the case. The full design is in the Part 1 doc.
 
 1. Extract from the email: the prospect company, contact, partner, and anything the partner said about the need. Use only words that appear in the email.
 2. Check HubSpot for the company, open deals, existing customer status and earlier registrations by other partners.
