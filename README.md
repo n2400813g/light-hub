@@ -50,8 +50,11 @@ What everyone has:
 | Plugin | For | Workflows |
 | --- | --- | --- |
 | light-core | Everyone | `find-workflow`, `request-workflow`, `publish-workflow`, `light-context` |
-| light-sales | AEs, BDRs, account managers, solutions engineers, Country Executives | `call-follow-up`, `account-research`, `deal-review` (draft) |
+| light-sales | AEs, BDRs, account managers, solutions engineers, Country Executives | `call-follow-up`, `account-research`, `deal-review` (draft), `rfp-answers` (draft) |
 | light-partners | Partnerships | `partner-referral-intake` |
+| light-customer-success | Implementation, data migration, agentic customer engineers, support | `go-live-check` (draft), `help-article-update` (draft) |
+| light-marketing | Product, growth and regional marketing | `localise-content` (draft) |
+| light-people | Talent Partners and hiring managers | `hiring-scorecard` (draft) |
 | light-finance | Finance; not released yet | `pricing-approval-memo`, and the Light connector |
 
 ## Good practice by type of team
@@ -138,7 +141,7 @@ documentation, and tested where a command-line tool exists:
      *Installed by default*, and team plugins to *Available to install*. A new joiner installs their team's
      plugin once.
 3. Organization settings > **Connectors**: add HubSpot and Slack once; each person signs in with their own
-   account. The Light connector (`https://api.light.inc/mcp`) is added the same way when Finance releases its
+   account. The Light connector (`https://api.light.inc/rest/ext/mcp`) is added the same way when Finance releases its
    plugin. It must be reachable from the internet and sign in with OAuth.
 4. **New joiners:** add them to their team's group when their account is created. That is the only onboarding
    step.
@@ -159,7 +162,7 @@ Organisation sync and Codex both look for a version change. If a sync ever looks
 ```bash
 codex plugin marketplace add <light-org>/light-hub
 codex plugin add light-core@light-hub
-codex plugin add light-sales@light-hub        # or light-partners
+codex plugin add light-sales@light-hub        # or your team's plugin
 codex plugin marketplace upgrade light-hub    # get updates
 ```
 

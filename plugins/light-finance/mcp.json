@@ -3,7 +3,7 @@
   "mcpServers": {
     "light": {
       "type": "streamable-http",
-      "url": "https://api.light.inc/mcp"
+      "url": "https://api.light.inc/rest/ext/mcp"
     }
   }
 }

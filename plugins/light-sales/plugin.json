@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-sales",
-  "version": "0.1.0",
-  "description": "For AEs, BDRs and Country Executives: account research, call follow-up and deal review.",
+  "version": "0.1.1",
+  "description": "For AEs, BDRs, account managers, solutions engineers and Country Executives: account research, call follow-up, deal review and RFP answers.",
   "author": {
     "name": "Light AI Academy"
   },
@@ -10,7 +10,7 @@
     "com.openai": {
       "interface": {
         "displayName": "Light Sales",
-        "shortDescription": "For AEs, BDRs and Country Executives: account research, call follow-up and deal review.",
+        "shortDescription": "For AEs, BDRs, account managers, solutions engineers and Country Executives: account research, call follow-up, deal review and RFP answers.",
         "developerName": "Light AI Academy",
         "category": "Productivity"
       }

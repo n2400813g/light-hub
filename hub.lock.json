@@ -1,18 +1,30 @@
 {
   "light-core": {
-    "hash": "9b99e33a3235",
-    "version": "0.1.0"
+    "hash": "bc2880c45a61",
+    "version": "0.1.4"
   },
   "light-sales": {
-    "hash": "614c6b7f1a06",
-    "version": "0.1.0"
+    "hash": "a694027ec4ee",
+    "version": "0.1.1"
   },
   "light-partners": {
     "hash": "d0c56c117ebf",
     "version": "0.1.0"
   },
-  "light-finance": {
-    "hash": "eeac0c57cb4a",
+  "light-customer-success": {
+    "hash": "0d3fad93460d",
     "version": "0.1.0"
+  },
+  "light-marketing": {
+    "hash": "a291db7f00e5",
+    "version": "0.1.1"
+  },
+  "light-people": {
+    "hash": "bb89e59f5240",
+    "version": "0.1.0"
+  },
+  "light-finance": {
+    "hash": "c9c424a52cb9",
+    "version": "0.1.1"
   }
 }

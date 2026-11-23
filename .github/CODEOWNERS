@@ -4,4 +4,7 @@
 /plugins/light-core/ @light-inc/ai-academy
 /plugins/light-sales/ @light-inc/sales-champion
 /plugins/light-partners/ @light-inc/partnerships-champion
+/plugins/light-customer-success/ @light-inc/customer-success-champion
+/plugins/light-marketing/ @light-inc/marketing-champion
+/plugins/light-people/ @light-inc/people-champion
 /plugins/light-finance/ @light-inc/finance-champion

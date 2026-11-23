@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-finance",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed.",
   "author": {
     "name": "Light AI Academy"

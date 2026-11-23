@@ -32,9 +32,25 @@ come from public sources (job board, trust centre, DPA, press) as of November 20
 | light-marketing | growth, product and regional marketing | Marketing | 2 |
 | light-finance | Finance, and anyone asking Finance | Finance | 3 |
 | light-people | talent and people ops (Ashby) | People | 3 |
-| light-legal | legal and compliance | Legal & Compliance | 3 |
+| light-legal | legal and compliance | Legal & Compliance | 3, not created |
+
+**Where the first workflow of each plugin comes from.** Each one is a task that Light's own job postings
+([board](https://jobs.ashbyhq.com/light-inc)) describe as part of the role, written against Light's public pages:
+
+| Workflow | Plugin | The posting says | Written against |
+| --- | --- | --- | --- |
+| `go-live-check` | customer-success | Implementation Manager: "Spot projects going off-track before the customer does"; Data Migration Lead: "reconciling the result back to the source system" | [Go-live readiness](https://light.inc/help/getting-started/go-live-readiness) |
+| `help-article-update` | customer-success | Support Specialist: "keep our help center articles accurate and current"; "Share feature requests and effective workarounds" | [Help Center](https://light.inc/help) |
+| `localise-content` | marketing | Nordics, DACH, Benelux and US marketing: "Localising our story, content and campaigns" | `light-context` |
+| `hiring-scorecard` | people | Talent Partner: "build the scorecards and calibration that keep the bar high" | Ashby, Light's recruiting system |
+| `rfp-answers` | sales | Senior Solutions Engineer: "RFP answers"; "Handle objections on integrations, data migration, security, controls and audit trail" | [Trust Center](https://light.inc/trust-center), [migration](https://light.inc/migration) |
+
+All five start as `draft`. Legal has no plugin: no posting describes a recurring legal task, so there is nothing
+verified to build yet. The two customer-success workflows deliberately never take a customer's ledger or ticket
+text, so they need no DPA decision to start.
 
 - **A plugin is created when its first workflow reaches `draft`, never before.** Empty plugins are noise.
+- **The Light connector** is `https://api.light.inc/rest/ext/mcp` ([Light's AI-client docs](https://light.inc/docs/getting-started/ai-clients)). Claude signs in through OAuth; other clients use a personal MCP token.
 - **Engineering and Product get light-core only.** Engineering works in GitHub and has its own coding agent
   (Sirius, from Light's engineering blog), so code skills belong in its own repositories.
 - **Regions are not plugins.** A DACH or Nordics difference, such as language, entity or currency, is a step

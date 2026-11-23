@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "light-marketing",
+  "version": "0.1.1",
+  "description": "For product, growth and regional marketing: localising Light's story and campaigns for each market.",
+  "author": {
+    "name": "Light AI Academy"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Light Marketing",
+        "shortDescription": "For product, growth and regional marketing: localising Light's story and campaigns for each market.",
+        "developerName": "Light AI Academy",
+        "category": "Productivity"
+      }
+    }
+  }
+}

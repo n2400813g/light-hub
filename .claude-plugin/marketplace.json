@@ -15,12 +15,27 @@
     {
       "name": "light-sales",
       "source": "./plugins/light-sales",
-      "description": "For AEs, BDRs and Country Executives: account research, call follow-up and deal review."
+      "description": "For AEs, BDRs, account managers, solutions engineers and Country Executives: account research, call follow-up, deal review and RFP answers."
     },
     {
       "name": "light-partners",
       "source": "./plugins/light-partners",
       "description": "For the partnerships team: partner referral intake and routing."
+    },
+    {
+      "name": "light-customer-success",
+      "source": "./plugins/light-customer-success",
+      "description": "For implementation, data migration, agentic customer engineering and support: go-live checks and help article updates."
+    },
+    {
+      "name": "light-marketing",
+      "source": "./plugins/light-marketing",
+      "description": "For product, growth and regional marketing: localising Light's story and campaigns for each market."
+    },
+    {
+      "name": "light-people",
+      "source": "./plugins/light-people",
+      "description": "For Talent Partners and hiring managers: interview scorecards for Ashby."
     }
   ]
 }

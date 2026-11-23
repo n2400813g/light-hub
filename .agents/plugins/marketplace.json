@@ -41,6 +41,42 @@
       "category": "Productivity"
     },
     {
+      "name": "light-customer-success",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-customer-success"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "light-marketing",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-marketing"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "light-people",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-people"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
       "name": "light-finance",
       "source": {
         "source": "local",
