@@ -86,6 +86,20 @@ the analytics API's per-plugin counts are one input.
     node scripts/hub.js catalog # regenerate the catalog find-workflow reads
     node scripts/hub.js find "the prospect wants a discount"
 
+## Testing it the way people use it
+
+`npm test` checks the rules. Whether the right workflow fires for each team is checked with Claude Code's own
+`claude plugin eval`, using one test bundle per kind of person that holds exactly what they have installed:
+
+    node scripts/hub.js bundles /tmp/light-hub-evals
+    cd /tmp/light-hub-evals/as-sales && claude plugin eval . --ablation none --runs 2 --max-cost-usd 5
+
+`evals/<bundle>/` holds 12 cases per bundle (Sales, Partnerships, Finance with its plugin still hidden, and a new
+joiner with light-core only). Each bundle's requests were written in that role's own words before reading any
+skill (`requests-blind.md`), then labelled. Each case checks which skill fired, or that none did, and, where a
+"Never" rule applies, that it held. A full run of all four bundles costs about USD 9. Add the words from every
+miss to the description, and every real request that went wrong as a new case.
+
 ## What the findability test showed
 
 Keyword search found the right workflow in the top three for 15 of 15 requests written with the

@@ -181,15 +181,17 @@ function entries() {
     run: install[s.plugin] === 'hidden'
       ? `Not released yet (${s.plugin} plugin); ask ${s.fm.metadata.owner}`
       : `skill \`${s.fm.name}\` (${s.plugin} plugin)`,
+    runnable: true,
   }));
-  for (const o of outside()) rows.push({ name: o.name, description: o.description, team: o.team, owner: o.owner, status: o.status, version: '', run: `${o.runs_in}: ${o.link}` });
+  for (const o of outside()) rows.push({ name: o.name, description: o.description, team: o.team, owner: o.owner, status: o.status, version: '', run: `${o.runs_in}: ${o.link}`, runnable: /^https?:\/\//.test(o.link) });
   const order = { company: 0, team: 1, draft: 2, retired: 3 };
   return rows.sort((a, b) => a.team.localeCompare(b.team) || order[a.status] - order[b.status] || a.name.localeCompare(b.name));
 }
 
 function catalog() {
   const esc = s => String(s).replace(/\|/g, '\\|');
-  const rows = entries().filter(e => e.status !== 'retired');
+  // Rows nobody can run yet (an outside workflow with no real link) are left out: they only distract.
+  const rows = entries().filter(e => e.status !== 'retired' && e.runnable);
   const md = [
     '# Light workflow catalog',
     '',
@@ -218,7 +220,27 @@ function find(query, k = 3) {
   }).filter(r => r.score > 0).sort((a, b) => b.score - a.score).slice(0, k);
 }
 
-module.exports = { frontmatter, skills, checkSkill, dataCheck, check, crossRefs, entries, catalog, find, tokens, build, outputs, stale };
+// Eval bundles: one test plugin per kind of person, holding exactly the skills they have installed
+// (light-core plus their team plugin; a hidden plugin's team gets light-core only), with that person's eval
+// cases from evals/<bundle>/. Run: claude plugin eval <out>/<bundle> --ablation none
+function bundles(out) {
+  const made = [];
+  for (const p of hub().plugins) {
+    const name = p.name === 'light-core' ? 'as-everyone' : `as-${p.audience}`;
+    const from = p.name === 'light-core' || p.install === 'hidden' ? ['light-core'] : ['light-core', p.name];
+    const dir = path.resolve(out, name);
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(path.join(dir, '.claude-plugin'), { recursive: true });
+    fs.writeFileSync(path.join(dir, '.claude-plugin/plugin.json'), JSON.stringify({ name, description: `What ${p.audience} has installed: ${from.join(' + ')}` }, null, 2) + '\n');
+    for (const f of from) fs.cpSync(path.join(ROOT, 'plugins', f, 'skills'), path.join(dir, 'skills'), { recursive: true });
+    const cases = path.join(ROOT, 'evals', name);
+    if (fs.existsSync(cases)) fs.cpSync(cases, path.join(dir, 'evals'), { recursive: true });
+    made.push(dir);
+  }
+  return made;
+}
+
+module.exports = { bundles, frontmatter, skills, checkSkill, dataCheck, check, crossRefs, entries, catalog, find, tokens, build, outputs, stale };
 
 if (require.main === module) {
   const [cmd, ...rest] = process.argv.slice(2);
@@ -230,9 +252,11 @@ if (require.main === module) {
     console.log(`ok: ${skills().length} skills and ${outside().length} outside workflows pass the hub rules`);
   } else if (cmd === 'catalog') {
     console.log(`wrote ${path.relative(ROOT, CATALOG)} with ${catalog()} workflows`);
+  } else if (cmd === 'bundles') {
+    for (const d of bundles(rest[0] || path.join(require('os').tmpdir(), 'light-hub-evals'))) console.log(d);
   } else if (cmd === 'find') {
     console.log(find(rest.join(' ')));
   } else {
-    console.log('usage: hub.js build | check | catalog | find "<words>"');
+    console.log('usage: hub.js build | check | catalog | bundles [dir] | find "<words>"');
   }
 }

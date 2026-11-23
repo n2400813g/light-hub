@@ -1,11 +1,11 @@
 ---
 name: light-context
-description: Shared facts about Light, its product and how it writes, for any workflow that writes to customers, partners, candidates or the public. Use when drafting anything that describes Light, its product, its customers, its offices or its values.
+description: Shared facts about Light, its product and how it writes, for anything written on Light's behalf to customers, partners, candidates or the public. Use when drafting a welcome email, case study, partner blurb, job ad or other company material that describes Light, its product, its customers, its offices or its values. Not for personal posts or messages.
 metadata:
   owner: Chief of Staff office
   team: operations
   status: company
-  version: "1"
+  version: "2"
 ---
 
 # Light context
@@ -33,4 +33,4 @@ Public facts only. Lines marked CONFIRM must be checked by the owner before this
 
 - Never quote a price or a discount. Route pricing to Finance (the pricing approval memo workflow, once Finance releases it).
 - Never promise an integration, certification or feature that is not on Light's public site. CONFIRM the source of truth for integrations.
-- Never name a customer that is not in the list above.
+- Never name a customer that is not in the list above. Write "[customer, pending approval]" in its place, even in a draft.

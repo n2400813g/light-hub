@@ -1,11 +1,11 @@
 ---
 name: partner-referral-intake
-description: Read a partner's referral or intro email, check it against HubSpot, apply the rules of engagement and route it to the right AE. Use when an accounting firm, implementation partner or fractional CFO introduces a prospect, registers a referral, or someone asks "who should take this referral".
+description: Read a partner's referral or intro email, check it against HubSpot, apply the rules of engagement and route it to the right AE. Use when an accounting firm, implementation partner or fractional CFO introduces a prospect, registers a referral, or someone asks "who should take this referral", or a partner asks about their commission, payout or referral fee.
 metadata:
   owner: Partnerships champion (named in week one)
   team: partners
   status: team
-  version: "1"
+  version: "2"
 ---
 
 # Partner referral intake
@@ -30,7 +30,8 @@ If HubSpot isn't available to you, ask for the notes or record to be pasted in. 
 ## Never
 
 - Never email anyone who is not on the partner's thread without approval.
-- Never promise a commission amount.
+- Never promise a commission amount. For commission questions, say who decides (the exception owner) and draft a holding reply.
+- Never invent a deadline, an AE or a territory. If the rules of engagement are not available, write "to confirm".
 
 ## Examples
 

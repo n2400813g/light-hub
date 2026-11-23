@@ -5,7 +5,7 @@ metadata:
   owner: Sales champion (named in week one)
   team: sales
   status: team
-  version: "8"
+  version: "9"
 ---
 
 # Call follow-up
@@ -15,7 +15,7 @@ v8 applies three changes found by the correction loop in v7 runs: no pleasantry,
 1. Greet the contact by first name, and nothing more: "Hi {first},"
 2. Thank them for their time and recap the pains they named on the call, in their words.
 3. Map each pain to the Light capability that addresses it.
-4. Include a line like: "I have attached our security overview for your IT team." Attach it.
+4. Include a line like: "I have attached our security overview for your IT team." Remind the AE to attach it; you do not have the file.
 5. Propose one concrete next step with a date.
 6. Sign off with the AE's name.
 

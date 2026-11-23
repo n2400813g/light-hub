@@ -14,9 +14,10 @@ test('the rules catch a workflow with no owner, no "Use when" and customer data 
     assert.ok(problems.includes(p), p);
 });
 
-test('the catalog lists every workflow that is not retired', () => {
+test('the catalog lists every workflow people can run: not retired, and outside ones only with a real link', () => {
   const n = H.catalog();
-  assert.strictEqual(n, H.entries().filter(e => e.status !== 'retired').length);
+  assert.strictEqual(n, H.entries().filter(e => e.status !== 'retired' && e.runnable).length);
+  assert.ok(H.entries().some(e => !e.runnable), 'the EXAMPLE placeholders should be left out');
 });
 
 // Requests in the words people at Light would use, not the words in the skill names.

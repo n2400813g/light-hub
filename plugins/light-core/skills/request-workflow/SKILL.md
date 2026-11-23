@@ -1,11 +1,11 @@
 ---
 name: request-workflow
-description: Turn a recurring task that no workflow covers, or a workflow that got it wrong, into a short post for the AI Academy and the workflow's owner. Use when find-workflow finds nothing, or someone says "can someone build", "I keep doing this by hand", "this takes me hours every week", "we should automate this", "this workflow got it wrong", "the skill keeps doing X" or "this is out of date".
+description: Turn a recurring task that no workflow covers, or a workflow that got it wrong, into a short post for the AI Academy and the workflow's owner. Use when find-workflow finds nothing, or someone says "can someone build", "I keep doing this by hand", "this takes me hours every week", "we should automate this", "we need a workflow that", "how do I ask for one", "I answer the same questions every day", "this workflow got it wrong", "who do I tell", "the skill keeps doing X" or "this is out of date".
 metadata:
   owner: AI Academy
   team: operations
   status: company
-  version: "2"
+  version: "3"
 ---
 
 # Request or flag a workflow
@@ -27,13 +27,13 @@ Example: <anonymised input and output>
 ## A workflow that got it wrong
 
 1. Find the workflow and its owner in `find-workflow`'s catalog.
-2. Ask what it did, what it should have done, and whether it happens every time or only sometimes.
+2. Ask what it did, what it should have done (and where that rule comes from, if they know), and whether it happens every time or only sometimes.
 3. Draft this post for the person to put in #light-hub, tagging the owner:
 
 ```
 Flag: <workflow name> (owner: <owner>)
 It did: <one line>
-It should: <one line>
+It should: <one line> (reporter's view; owner to confirm against the rules)
 How often: <every time | sometimes | once>
 Example: <anonymised input and output>
 ```
