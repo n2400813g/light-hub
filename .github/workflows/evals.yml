@@ -1,9 +1,10 @@
 name: evals
 # Runs the eval bundles a pull request affects (same command as the pre-push hook).
 # Needs the repository secret ANTHROPIC_API_KEY. Make "evals" a required check in branch protection for main.
+# No paths filter on purpose: a required check skipped by a filter stays "Expected" and blocks the merge.
+# The script decides; a pull request that changes no workflow or eval passes in seconds at no cost.
 on:
   pull_request:
-    paths: ['plugins/**', 'evals/**', 'hub.json']
 concurrency:
   group: evals-${{ github.event.pull_request.number }}
   cancel-in-progress: true   # a new push to the PR replaces the run in flight, so no money on stale commits
@@ -22,7 +23,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Fail clearly if the API key is missing
-        run: test -n "$ANTHROPIC_API_KEY" || { echo "Add the ANTHROPIC_API_KEY repository secret"; exit 1; }
       - run: npm install -g @anthropic-ai/claude-code
       - run: node scripts/evals.js --base origin/${{ github.base_ref }}

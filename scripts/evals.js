@@ -41,6 +41,10 @@ function main() {
   const hub = JSON.parse(fs.readFileSync(path.join(ROOT, 'hub.json'), 'utf8'));
   const targets = args.includes('--all') ? hub.plugins.map(bundleOf) : affected(changedFiles(base), hub.plugins);
   if (!targets.length) { console.log('evals: no workflow or eval changed, nothing to run'); return; }
+  if (process.env.GITHUB_ACTIONS && !process.env.ANTHROPIC_API_KEY) {
+    console.error('evals: add the ANTHROPIC_API_KEY repository secret (Settings > Secrets and variables > Actions)');
+    process.exit(1);
+  }
   if (spawnSync('claude', ['--version']).status !== 0) {
     console.error('evals: the claude CLI is needed to run evals (https://code.claude.com). Skip once with git push --no-verify.');
     process.exit(1);
