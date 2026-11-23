@@ -42,18 +42,25 @@ come from public sources (job board, trust centre, DPA, press) as of November 20
 
 ### 2. Delivery on every tool people actually have
 
-Light gives new hires Claude, Codex, Lovable and Noon from day one. Each was checked; setup steps are in the
+Light gives new hires Claude, Codex, Lovable and Noon from day one. The repository packages
+workflows for these tools, but delivery is not equally native on every platform. Setup steps are in the
 [README](../README.md#for-the-hub-admins).
-- **Claude:** organisation marketplace synced from this repository. Workflows reach web, desktop, mobile, Cowork
-  and Claude Code.
-  - Per-group delivery needs Enterprise. On the Team plan, team plugins are *Available to install*.
-- **Codex and ChatGPT:** workspace import of `.agents/plugins/marketplace.json`. Tested in the Codex CLI.
-  - The workspace import ignores the repo's install settings, so an admin switches light-finance off by hand.
-- **Lovable:** builds internal apps. It gets `light-context` as workspace instructions and skills by ZIP. Its
-  apps are listed in the catalog.
-- **Noon:** recruiting agent, synced with Ashby. Claude calls it as a connector, and the catalog lists it.
-- **Anything else:** `npx skills add <repo>` installs the same skills into 70+ agents. It found all 9 skills in
-  this private repo using the existing git login.
+
+| Tool | Delivery path | Verification and limits |
+| --- | --- | --- |
+| **Claude** | Organisation marketplace from this repository; plugins can expose skills and connectors across Claude web, desktop, mobile, Cowork and Claude Code. | Strict manifest/schema validation was reported clean. A test installation from GitHub and an update to the newer plugin version were reported successful. Real organisation-wide group sync and the Light connector's OAuth flow still need an authenticated admin test. |
+| **Codex CLI** | Add this repository as a plugin marketplace, then install `light-core` and the relevant team plugin. | A throwaway Codex CLI home was used to install Sales and Core at version `0.1.0`; the hidden Finance plugin was rejected. This verifies marketplace installation and hidden-plugin exclusion, not that a workflow actually fires in a live Codex session. |
+| **ChatGPT workspace** | Admin imports `.agents/plugins/marketplace.json`. | Not verified in a Business or Enterprise workspace. The workspace importer does not enforce this repository's install policy, so an admin must explicitly leave `light-finance` disabled. Do not treat the Codex CLI test as proof of ChatGPT workspace import. |
+| **Lovable** | Paste `light-context` into workspace instructions; import individual skills from ZIP. | The documented workaround was reviewed, but a real Lovable workspace import and workflow use were not tested. Lovable's assistant does not load the hub's workflows as a marketplace. |
+| **Noon** | Claude can call Noon through a custom MCP connector; the recruiting workflow is listed in the catalog as a draft. | The connector/catalog setup is documented, but a live Noon connection and end-to-end recruiting workflow were not tested. Noon does not install this plugin marketplace. |
+| **Other compatible agents** | The Agent Skills CLI can install skills from the repository. | The supplied test notes report discovery of the skills using an existing GitHub login. Compatibility still depends on each agent's support for the Agent Skills format. |
+
+The supplied implementation notes report that `node scripts/hub.js check --strict` completed without
+warnings and `npm test` passed 11/11 tests. Treat those as local test results, not as a green CI result:
+the six GitHub Actions runs visible on 23 November 2026 are marked failed, and their job-step details were
+not available for diagnosis during this review. Re-run the workflow and inspect its logs before relying on
+CI as a release gate.
+
 - **Groups mirror the job board's teams.** They are set once in each platform's admin; the repo does not store
   them.
 
