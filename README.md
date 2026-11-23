@@ -186,7 +186,7 @@ while building:
 Noon runs its own recruiting agent and cannot load workflows. Two things connect it to the hub:
 - **Claude can call Noon:** each recruiter adds it as a custom connector, using the URL from Noon's
   Settings > MCP.
-- **The catalog lists it** (`candidate-sourcing`). It is hidden until the Talent champion adds Light's Noon link.
+- **The catalog lists it** (`candidate-sourcing`) as not live yet, with the Talent champion to ask, until Light's Noon link is added.
 
 ### Any other agent
 

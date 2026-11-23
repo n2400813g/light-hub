@@ -223,9 +223,8 @@ function entries() {
     run: install[s.plugin] === 'hidden'
       ? `Not released yet (${s.plugin} plugin); ask ${s.fm.metadata.owner}`
       : `skill \`${s.fm.name}\` (${s.plugin} plugin)`,
-    runnable: true,
   }));
-  for (const o of outside()) rows.push({ name: o.name, description: o.description, team: o.team, owner: o.owner, status: o.status, version: '', run: `${o.runs_in}: ${o.link}`, runnable: /^https?:\/\//.test(o.link) });
+  for (const o of outside()) rows.push({ name: o.name, description: o.description, team: o.team, owner: o.owner, status: o.status, version: '', run: /^https?:\/\//.test(o.link) ? `${o.runs_in}: ${o.link}` : `Not live yet (${o.runs_in}); ask ${o.owner}` });
   const order = { company: 0, team: 1, draft: 2, retired: 3 };
   return rows.sort((a, b) => a.team.localeCompare(b.team) || order[a.status] - order[b.status] || a.name.localeCompare(b.name));
 }
@@ -233,7 +232,7 @@ function entries() {
 function catalog() {
   const esc = s => String(s).replace(/\|/g, '\\|');
   // Rows nobody can run yet (an outside workflow with no real link) are left out: they only distract.
-  const rows = entries().filter(e => e.status !== 'retired' && e.runnable);
+  const rows = entries().filter(e => e.status !== 'retired');
   const md = [
     '# Light workflow catalog',
     '',

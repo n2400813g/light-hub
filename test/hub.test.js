@@ -14,10 +14,11 @@ test('the rules catch a workflow with no owner, no "Use when" and customer data 
     assert.ok(problems.includes(p), p);
 });
 
-test('the catalog lists every workflow people can run: not retired, and outside ones only with a real link', () => {
+test('the catalog lists every workflow that is not retired; one with no link yet says who to ask', () => {
   const n = H.catalog();
-  assert.strictEqual(n, H.entries().filter(e => e.status !== 'retired' && e.runnable).length);
-  assert.ok(H.entries().some(e => !e.runnable), 'outside workflows without a link yet should be left out');
+  assert.strictEqual(n, H.entries().filter(e => e.status !== 'retired').length);
+  const lead = H.entries().find(e => e.name === 'inbound-lead-routing');
+  assert.match(lead.run, /^Not live yet \(HubSpot workflow\); ask AI and RevOps Lead$/);
 });
 
 // Requests in the words people at Light would use, not the words in the skill names.
