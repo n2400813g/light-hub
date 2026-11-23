@@ -3,6 +3,7 @@
   "displayName": "Light Hub",
   "owner": "Light AI Academy",
   "maintainer": "light-inc/ai-academy",
+  "compliance": "light-inc/legal-compliance",
   "version": "0.1.0",
   "description": "Every working workflow at Light: one plugin per team plus a shared core. Written once in the open Agent Skills and Agent Plugins formats; packaged for each AI platform Light uses.",
   "plugins": [

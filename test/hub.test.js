@@ -73,7 +73,7 @@ test('each plugin carries the portable core and Claude\'s manifest, and both mar
     assert.match(portable.$schema, /agent-plugins\.org/);
     assert.strictEqual(portable.name, p.name);
     assert.ok(fs.existsSync(path.join(root, 'plugins', p.name, '.claude-plugin/plugin.json')));
-    assert.ok(claude.plugins.some(x => x.name === p.name));
+    assert.strictEqual(claude.plugins.some(x => x.name === p.name), p.install !== 'hidden', `${p.name} listed for Claude`);
     assert.ok(agents.plugins.some(x => x.name === p.name && x.source.path === `./plugins/${p.name}`));
   }
 });

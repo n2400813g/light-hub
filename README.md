@@ -13,6 +13,9 @@ teams in `hub.json`, and outside-Claude entries marked EXAMPLE or "named in week
 | light-partners | Partnerships | partner-referral-intake (Part 1) |
 | light-finance | Finance; draft, not distributed yet | pricing-approval-memo, plus the Light connector |
 
+How this goes from one Sales pod to all of Light (team map, governance, rhythm, measures):
+[docs/company-rollout.md](docs/company-rollout.md).
+
 `catalog/outside-claude.json` lists workflows that run elsewhere (HubSpot workflows, n8n, Light's own agents),
 so `find-workflow` can point to them too.
 
@@ -29,6 +32,10 @@ everything else:
 | `.claude-plugin/marketplace.json` | Claude private organisation marketplaces |
 | `.agents/plugins/marketplace.json` | ChatGPT and Codex repository marketplaces, with install policy from `hub.json` |
 | `.github/CODEOWNERS` | GitHub: each team's champion must approve changes to their plugin |
+
+A `hidden` plugin is left out of every marketplace, so no platform delivers it. Hidden is not secret: anyone who
+can read the repository can install any skill (for example with `npx skills add`), which is why workflows hold
+procedure, never data.
 
 Adding a platform means adding one writer to `scripts/hub.js`. The skills, owners and rules do not change.
 The Claude packaging passes Claude Code's validator. The manifests deliberately carry no `version`: a set version

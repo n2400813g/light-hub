@@ -21,11 +21,6 @@
       "name": "light-partners",
       "source": "./plugins/light-partners",
       "description": "For the partnerships team: partner referral intake and routing."
-    },
-    {
-      "name": "light-finance",
-      "source": "./plugins/light-finance",
-      "description": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed."
     }
   ]
 }
