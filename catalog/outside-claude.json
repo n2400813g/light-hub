@@ -1,0 +1,20 @@
+[
+  {
+    "name": "EXAMPLE inbound-lead-routing",
+    "description": "Assigns new inbound leads, including website demo requests, to an owner by territory and segment. Use when asking how inbound leads are routed, which rep gets a demo request, or who owns a new lead.",
+    "team": "sales",
+    "owner": "AI and RevOps Lead",
+    "status": "draft",
+    "runs_in": "HubSpot workflow",
+    "link": "REPLACE with the HubSpot workflow URL in week one"
+  },
+  {
+    "name": "EXAMPLE vendor-invoice-intake",
+    "description": "Reads vendor invoices from the AP inbox and creates bills in Light for coding and approval. Use when asking how supplier invoices get into Light or who approves a vendor bill.",
+    "team": "finance",
+    "owner": "Finance champion",
+    "status": "draft",
+    "runs_in": "Light (AP agent)",
+    "link": "REPLACE in week one"
+  }
+]

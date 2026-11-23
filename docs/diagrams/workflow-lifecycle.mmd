@@ -1,0 +1,11 @@
+stateDiagram-v2
+  [*] --> Draft: posted in #35;light-hub, champion merges it, owner named
+  [*] --> Draft: converted from an old prompt page, owner confirming
+  Draft --> Team: two colleagues confirm it worked on a real case
+  Team --> Company: AI Academy review
+  Team --> Draft: flagged as wrong, owner fixing
+  Company --> Draft: flagged as wrong, owner fixing
+  Draft --> Retired: owner or champion retires it at Friday triage
+  Team --> Retired: unused or replaced, decided at Friday triage
+  Company --> Retired: replaced by a better workflow
+  Retired --> [*]

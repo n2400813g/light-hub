@@ -1,0 +1,56 @@
+{
+  "name": "light-hub",
+  "interface": {
+    "displayName": "Light Hub"
+  },
+  "plugins": [
+    {
+      "name": "light-core",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-core"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "light-sales",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-sales"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "light-partners",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-partners"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "light-finance",
+      "source": {
+        "source": "local",
+        "path": "./plugins/light-finance"
+      },
+      "policy": {
+        "installation": "NOT_AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

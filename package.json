@@ -1,0 +1,11 @@
+{
+  "name": "light-hub",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Light's workflow hub: a private Claude plugin marketplace with one plugin per team plus a shared core.",
+  "scripts": {
+    "test": "node --test test/hub.test.js",
+    "check": "node scripts/hub.js check",
+    "catalog": "node scripts/hub.js catalog"
+  }
+}

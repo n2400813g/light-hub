@@ -1,0 +1,31 @@
+{
+  "name": "light-hub",
+  "owner": {
+    "name": "Light AI Academy"
+  },
+  "metadata": {
+    "description": "Every working workflow at Light: one plugin per team plus a shared core. Written once in the open Agent Skills and Agent Plugins formats; packaged for each AI platform Light uses."
+  },
+  "plugins": [
+    {
+      "name": "light-core",
+      "source": "./plugins/light-core",
+      "description": "For everyone at Light: find a workflow, request one, publish your own, and the company facts every workflow shares."
+    },
+    {
+      "name": "light-sales",
+      "source": "./plugins/light-sales",
+      "description": "For AEs, BDRs and Country Executives: account research, call follow-up and deal review."
+    },
+    {
+      "name": "light-partners",
+      "source": "./plugins/light-partners",
+      "description": "For the partnerships team: partner referral intake and routing."
+    },
+    {
+      "name": "light-finance",
+      "source": "./plugins/light-finance",
+      "description": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "light-hub",
+  "displayName": "Light Hub",
+  "owner": "Light AI Academy",
+  "maintainer": "light-inc/ai-academy",
+  "version": "0.1.0",
+  "description": "Every working workflow at Light: one plugin per team plus a shared core. Written once in the open Agent Skills and Agent Plugins formats; packaged for each AI platform Light uses.",
+  "plugins": [
+    {
+      "name": "light-core",
+      "description": "For everyone at Light: find a workflow, request one, publish your own, and the company facts every workflow shares.",
+      "audience": "everyone",
+      "champion": "light-inc/ai-academy",
+      "install": "default"
+    },
+    {
+      "name": "light-sales",
+      "description": "For AEs, BDRs and Country Executives: account research, call follow-up and deal review.",
+      "audience": "sales",
+      "champion": "light-inc/sales-champion",
+      "install": "default"
+    },
+    {
+      "name": "light-partners",
+      "description": "For the partnerships team: partner referral intake and routing.",
+      "audience": "partners",
+      "champion": "light-inc/partnerships-champion",
+      "install": "available"
+    },
+    {
+      "name": "light-finance",
+      "description": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed.",
+      "audience": "finance",
+      "champion": "light-inc/finance-champion",
+      "install": "hidden",
+      "connectors": {
+        "light": {
+          "url": "https://api.light.inc/mcp"
+        }
+      }
+    }
+  ]
+}

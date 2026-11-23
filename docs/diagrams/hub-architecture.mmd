@@ -1,0 +1,20 @@
+flowchart LR
+  P["Each person<br/>light-core + their team plugin,<br/>installed by group"]
+  C["Team champion<br/>reviews and merges"]
+  K["Checks on every change<br/>owner, Use when,<br/>Never rules, no data"]
+  R[("light-hub repo<br/>light-core + one plugin per team")]
+  M["Each platform's marketplace<br/>Claude, ChatGPT or Codex<br/>generated, access by group"]
+  X["Connectors set once<br/>HubSpot, Slack, Drive, Light"]
+  O["Catalog<br/>incl. workflows outside Claude"]
+  S["#35;light-hub in Slack<br/>requests, Friday digest"]
+  A["AI Academy + Chief of Staff<br/>own the road"]
+  P -->|"publish-workflow,<br/>posted in #35;light-hub"| C
+  C -->|"pull request"| K
+  K --> R
+  R -->|"generate and sync"| M
+  M -->|"installed by role"| P
+  X -.->|"each person's own access"| P
+  P -->|"find-workflow"| O
+  P -->|"request-workflow:<br/>new, or flag a wrong one"| S
+  S -->|"Friday triage"| A
+  A -->|"build with the team,<br/>hand to an owner"| C

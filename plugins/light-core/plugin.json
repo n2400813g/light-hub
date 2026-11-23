@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "light-core",
+  "description": "For everyone at Light: find a workflow, request one, publish your own, and the company facts every workflow shares.",
+  "author": {
+    "name": "Light AI Academy"
+  }
+}
