@@ -83,14 +83,20 @@ test('a skill is written once: no platform-specific copies of any SKILL.md', () 
   assert.strictEqual(new Set(names).size, names.length);
 });
 
-test('generated manifests carry no version, so every merged change reaches people on the next sync', () => {
-  for (const [f, c] of Object.entries(H.outputs())) {
-    if (!f.endsWith('.json')) continue;
-    const o = JSON.parse(c);
-    assert.strictEqual(o.version, undefined, `${f} sets version`);
-    assert.strictEqual(o.metadata?.version, undefined, `${f} sets metadata.version`);
-    for (const p of o.plugins || []) assert.strictEqual(p.version, undefined, `${f} pins ${p.name}`);
-  }
+test('versions bump themselves: a content change raises the patch version, nothing else does', () => {
+  const fs = require('fs'), path = require('path');
+  const file = path.resolve(__dirname, '../plugins/light-sales/skills/deal-review/SKILL.md');
+  const before = H.versions()['light-sales'];
+  assert.deepStrictEqual(H.versions()['light-sales'], before, 'no change, no bump');
+  const text = fs.readFileSync(file, 'utf8');
+  try {
+    fs.writeFileSync(file, text + '\n');
+    const after = H.versions()['light-sales'];
+    assert.notStrictEqual(after.hash, before.hash);
+    assert.strictEqual(Number(after.version.split('.')[2]), Number(before.version.split('.')[2]) + 1);
+    assert.deepStrictEqual(H.versions()['light-core'], H.versions()['light-core'], 'other plugins unchanged');
+  } finally { fs.writeFileSync(file, text); }
+  for (const [f, c] of Object.entries(H.outputs())) if (f.endsWith('plugin.json')) assert.match(JSON.parse(c).version, /^\d+\.\d+\.\d+$/, f);
 });
 
 test('a workflow that points people to a workflow in a hidden plugin fails the check', () => {

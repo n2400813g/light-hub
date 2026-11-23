@@ -116,24 +116,86 @@ One champion per team plugin, chosen by the team lead. About 15 minutes a week.
 The AI Academy owns the repository. Legal & Compliance co-review every change to `hub.json`, which sets the
 connectors and who gets what.
 
-### Claude (Team or Enterprise)
+Light's confirmed AI tools are Claude, Codex, Lovable and Noon (job posts). Each was checked against its own
+documentation, and tested where a command-line tool exists:
 
-1. Organization settings > **Plugins & skills**: add this private GitHub repository as the organisation
-   marketplace.
-2. Give light-core to everyone, and each team plugin to its team's group. Members get them installed.
-3. Connect HubSpot and Slack once, at organisation level. Each person uses their own access.
-4. Add a new joiner to their team's group when their account is created. That is the only onboarding step.
+| Tool | What people get | Tested |
+| --- | --- | --- |
+| **Claude**: web, desktop, mobile, Cowork, Claude Code | every workflow and connector | validator (`--strict`) passes; install and update from GitHub |
+| **Codex** (and ChatGPT, through the same workspace plugins) | every workflow, Finance's connector | Codex CLI 0.171.0: marketplace added, plugins installed, Finance refused, skills in the prompt |
+| **Lovable** | the workflows while building apps; `light-context` as workspace instructions | from its docs |
+| **Noon** (recruiting agent, synced with Ashby) | nothing to install: Claude reaches it as a connector | from its docs |
 
-### Codex and other agents
+### Claude
 
-- **Codex** reads `.agents/plugins/marketplace.json` from this repository, with each plugin's install setting.
-  Exact setup steps are still to be checked in week one.
-- **Any other agent**, through the open `skills` CLI. It uses your existing GitHub login:
+1. Organization settings > **Plugins & skills**:
+   - Turn on **Skills** and **Cloud code execution and file creation**.
+   - Add this private GitHub repository as the organisation marketplace.
+2. Choose who gets what:
+   - **Enterprise:** in Organization settings > Groups, set light-core to *Installed by default* for everyone,
+     and each team plugin to *Installed by default* for its team's group.
+   - **Team plan:** there are no per-group settings, so *Installed by default* means everyone. Set light-core to
+     *Installed by default*, and team plugins to *Available to install*. A new joiner installs their team's
+     plugin once.
+3. Organization settings > **Connectors**: add HubSpot and Slack once; each person signs in with their own
+   account. The Light connector (`https://api.light.inc/mcp`) is added the same way when Finance releases its
+   plugin. It must be reachable from the internet and sign in with OAuth.
+4. **New joiners:** add them to their team's group when their account is created. That is the only onboarding
+   step.
 
-  ```bash
-  npx skills add https://github.com/<light-org>/light-hub --list
-  npx skills add https://github.com/<light-org>/light-hub --skill find-workflow
-  ```
+Versions bump themselves: `node scripts/hub.js build` raises a plugin's version whenever its content changes.
+Organisation sync and Codex both look for a version change. If a sync ever looks stuck, an Owner can press
+**Re-sync**.
+
+### Codex and ChatGPT
+
+**Admin, once (Business or Enterprise workspace):**
+1. Admin console > Plugins > Add > **Import marketplace**, and point it at this repository. It syncs daily.
+2. Set light-core and the team plugins to **Installed**. Enterprise can do this per role.
+3. **Switch off light-finance by hand.** The import does not apply the repository's install settings.
+
+**One person, from the Codex CLI** (verified; it uses their GitHub login):
+
+```bash
+codex plugin marketplace add <light-org>/light-hub
+codex plugin add light-core@light-hub
+codex plugin add light-sales@light-hub        # or light-partners
+codex plugin marketplace upgrade light-hub    # get updates
+```
+
+In Codex, start a workflow with `$`, for example `$call-follow-up`, or just describe the task. In ChatGPT, use
+`@`.
+
+### Lovable
+
+Lovable is for building internal apps. Its assistant chat ("Chats") cannot load workflows, so the hub helps
+while building:
+1. **Workspace instructions:** paste `plugins/light-core/skills/light-context/SKILL.md`, without the CONFIRM
+   lines, into the workspace instructions. It is well under the 10,000-character limit.
+2. **Skills:** a workspace owner imports a skill as a ZIP, because the repository is private:
+
+   ```bash
+   cd plugins/light-core/skills && zip -r light-context.zip light-context
+   ```
+
+3. **Catalog:** list each Lovable app people should use in `catalog/outside-claude.json`, with
+   `"runs_in": "Lovable app"` and its link, so `find-workflow` can point to it.
+
+### Noon
+
+Noon runs its own recruiting agent and cannot load workflows. Two things connect it to the hub:
+- **Claude can call Noon:** each recruiter adds it as a custom connector, using the URL from Noon's
+  Settings > MCP.
+- **The catalog lists it** (`candidate-sourcing`). It is hidden until the Talent champion adds Light's Noon link.
+
+### Any other agent
+
+The open `skills` CLI installs the workflows into other agents, using your GitHub login:
+
+```bash
+npx skills add https://github.com/<light-org>/light-hub --list
+npx skills add https://github.com/<light-org>/light-hub --skill find-workflow
+```
 
 > **Hidden is not secret.** A `hidden` plugin is left out of every marketplace, but anyone who can read the
 > repository can install any skill. That is safe only because workflows hold procedure, never data.
@@ -182,9 +244,10 @@ You edit two things: `hub.json` (plugins, audience, champions, connectors) and t
 | `.agents/plugins/marketplace.json` | Codex, with install policy from `hub.json` |
 | `.github/CODEOWNERS` | GitHub: champions review their plugin; Legal & Compliance review `hub.json` |
 | `plugins/light-core/skills/find-workflow/references/catalog.md` | `find-workflow` |
+| `hub.lock.json` | `build`: the content hash and version of each plugin |
 
-The manifests carry no `version` on purpose. Claude then tracks the git commit, so every merged change reaches
-people on the next sync. This was tested: an install from GitHub updated to the new commit.
+Nobody edits a version. `hub.lock.json` keeps a hash of each plugin's content, and `build` raises the patch
+version whenever that hash changes, so every merged change is a new version on every platform.
 
 ```bash
 node scripts/hub.js build     # regenerate packaging from hub.json

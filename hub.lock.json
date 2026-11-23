@@ -1,0 +1,18 @@
+{
+  "light-core": {
+    "hash": "9b99e33a3235",
+    "version": "0.1.0"
+  },
+  "light-sales": {
+    "hash": "614c6b7f1a06",
+    "version": "0.1.0"
+  },
+  "light-partners": {
+    "hash": "d0c56c117ebf",
+    "version": "0.1.0"
+  },
+  "light-finance": {
+    "hash": "eeac0c57cb4a",
+    "version": "0.1.0"
+  }
+}

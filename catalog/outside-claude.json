@@ -16,5 +16,14 @@
     "status": "draft",
     "runs_in": "Light (AP agent)",
     "link": "REPLACE in week one"
+  },
+  {
+    "name": "candidate-sourcing",
+    "description": "Finds, ranks and reaches out to candidates for an open role, synced with Ashby. Use when asking how candidates are sourced, who runs outreach for a role, or whether Claude can work with Noon (add Noon as a connector in Claude).",
+    "team": "people",
+    "owner": "Talent champion (named in week one)",
+    "status": "draft",
+    "runs_in": "Noon",
+    "link": "REPLACE with Light's Noon workspace link in week one"
   }
 ]

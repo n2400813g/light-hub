@@ -1,8 +1,19 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-core",
+  "version": "0.1.0",
   "description": "For everyone at Light: find a workflow, request one, publish your own, and the company facts every workflow shares.",
   "author": {
     "name": "Light AI Academy"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Light Core",
+        "shortDescription": "For everyone at Light: find a workflow, request one, publish your own, and the company facts every workflow shares.",
+        "developerName": "Light AI Academy",
+        "category": "Productivity"
+      }
+    }
   }
 }

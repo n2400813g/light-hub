@@ -1,8 +1,19 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-finance",
+  "version": "0.1.0",
   "description": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed.",
   "author": {
     "name": "Light AI Academy"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Light Finance",
+        "shortDescription": "For Finance and anyone asking Finance: pricing approval memos. Draft, not yet distributed.",
+        "developerName": "Light AI Academy",
+        "category": "Productivity"
+      }
+    }
   }
 }

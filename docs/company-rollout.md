@@ -42,10 +42,18 @@ come from public sources (job board, trust centre, DPA, press) as of November 20
 
 ### 2. Delivery on every tool people actually have
 
-- **Claude:** organisation marketplace synced from this repository, with access by group.
-- **Codex:** `.agents/plugins/marketplace.json`, with install policy from `hub.json`.
-- **Everything else:** `npx skills add <repo>` (the Vercel `skills` CLI) installs the same skills into 70+
-  agents. It was checked against this private repo: it found all 9 skills using the existing git login.
+Light gives new hires Claude, Codex, Lovable and Noon from day one. Each was checked; setup steps are in the
+[README](../README.md#for-the-hub-admins).
+- **Claude:** organisation marketplace synced from this repository. Workflows reach web, desktop, mobile, Cowork
+  and Claude Code.
+  - Per-group delivery needs Enterprise. On the Team plan, team plugins are *Available to install*.
+- **Codex and ChatGPT:** workspace import of `.agents/plugins/marketplace.json`. Tested in the Codex CLI.
+  - The workspace import ignores the repo's install settings, so an admin switches light-finance off by hand.
+- **Lovable:** builds internal apps. It gets `light-context` as workspace instructions and skills by ZIP. Its
+  apps are listed in the catalog.
+- **Noon:** recruiting agent, synced with Ashby. Claude calls it as a connector, and the catalog lists it.
+- **Anything else:** `npx skills add <repo>` installs the same skills into 70+ agents. It found all 9 skills in
+  this private repo using the existing git login.
 - **Groups mirror the job board's teams.** They are set once in each platform's admin; the repo does not store
   them.
 

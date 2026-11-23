@@ -1,8 +1,19 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "light-partners",
+  "version": "0.1.0",
   "description": "For the partnerships team: partner referral intake and routing.",
   "author": {
     "name": "Light AI Academy"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Light Partners",
+        "shortDescription": "For the partnerships team: partner referral intake and routing.",
+        "developerName": "Light AI Academy",
+        "category": "Productivity"
+      }
+    }
   }
 }

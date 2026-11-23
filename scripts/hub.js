@@ -88,18 +88,54 @@ function dataCheck(text) {
 // Packaging per platform, generated from hub.json. Adding a platform means adding one writer here;
 // the skills themselves never change.
 const INSTALL = { default: 'INSTALLED_BY_DEFAULT', available: 'AVAILABLE', hidden: 'NOT_AVAILABLE' };
+const LOCK = path.join(ROOT, 'hub.lock.json');
+const GENERATED = new Set(['plugin.json', 'mcp.json', '.mcp.json', '.claude-plugin']);
+
+// Versions bump themselves. Each plugin's content is hashed; when the hash differs from hub.lock.json, the patch
+// version goes up by one. Nobody edits a version, every merged change is a new version (which Claude's org sync and
+// Codex both key updates on), and the generated files are identical on every machine.
+function pluginHash(p) {
+  const hash = require('crypto').createHash('sha256').update(JSON.stringify([p.description, p.connectors || null]));
+  const walk = dir => fs.readdirSync(dir).filter(f => f !== '.DS_Store').sort().forEach(f => {
+    const full = path.join(dir, f);
+    if (dir === path.join(ROOT, 'plugins', p.name) && GENERATED.has(f)) return;
+    if (fs.statSync(full).isDirectory()) walk(full);
+    else hash.update(path.relative(ROOT, full)).update(fs.readFileSync(full));
+  });
+  walk(path.join(ROOT, 'plugins', p.name));
+  return hash.digest('hex').slice(0, 12);
+}
+function versions(h = hub()) {
+  const lock = fs.existsSync(LOCK) ? JSON.parse(fs.readFileSync(LOCK, 'utf8')) : {};
+  const [major, minor] = h.version.split('.');
+  const out = {};
+  for (const p of h.plugins) {
+    const hash = pluginHash(p), prev = lock[p.name];
+    if (prev && prev.hash === hash) { out[p.name] = prev; continue; }
+    const patch = prev && prev.version.startsWith(`${major}.${minor}.`) ? Number(prev.version.split('.')[2]) + 1 : 0;
+    out[p.name] = { hash, version: `${major}.${minor}.${patch}` };
+  }
+  return out;
+}
+const title = name => name.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' ');
+
 function outputs() {
   const h = hub();
   const files = {};
   const json = o => JSON.stringify(o, null, 2) + '\n';
+  const v = versions(h);
+  files['hub.lock.json'] = json(v);
   for (const p of h.plugins) {
     const dir = `plugins/${p.name}`;
-    // Open Agent Plugins core (agent-plugins.org): read by ChatGPT, Codex and other compatible clients.
-    // No version field: a set version pins users until it is bumped. Without one, Claude tracks the git commit,
-    // so every merged change reaches people on the next sync.
-    files[`${dir}/plugin.json`] = json({ $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json', name: p.name, description: p.description, author: { name: h.owner } });
+    const version = v[p.name].version;
+    // Open Agent Plugins 1.0.0 core: read by Codex, ChatGPT and other compatible clients. The com.openai extension
+    // only sets how Codex and ChatGPT display it; without it they show the raw name under "Other".
+    files[`${dir}/plugin.json`] = json({
+      $schema: 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json', name: p.name, version, description: p.description, author: { name: h.owner },
+      extensions: { 'com.openai': { interface: { displayName: title(p.name), shortDescription: p.description, developerName: h.owner, category: 'Productivity' } } },
+    });
     // Claude's own manifest.
-    files[`${dir}/.claude-plugin/plugin.json`] = json({ name: p.name, description: p.description, author: { name: h.owner } });
+    files[`${dir}/.claude-plugin/plugin.json`] = json({ name: p.name, version, description: p.description, author: { name: h.owner } });
     if (p.connectors) {
       const portable = {}, claude = {};
       for (const [k, c] of Object.entries(p.connectors)) { portable[k] = { type: 'streamable-http', url: c.url }; claude[k] = { type: 'http', url: c.url }; }
@@ -246,7 +282,7 @@ function bundles(out) {
   return made;
 }
 
-module.exports = { bundles, frontmatter, skills, checkSkill, dataCheck, check, crossRefs, entries, catalog, find, tokens, build, outputs, stale };
+module.exports = { versions, pluginHash, bundles, frontmatter, skills, checkSkill, dataCheck, check, crossRefs, entries, catalog, find, tokens, build, outputs, stale };
 
 if (require.main === module) {
   const [cmd, ...rest] = process.argv.slice(2);
